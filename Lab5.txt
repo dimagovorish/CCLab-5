@@ -1,0 +1,15 @@
+(c) Корпорация Майкрософт (Microsoft Corporation), 2019. Все права защищены.
+
+C:\Users\User10>aws sns create-topic --name DmytroLab5
+{
+    "TopicArn": "arn:aws:sns:us-east-1:871533708305:DmytroLab5"
+}
+
+
+C:\Users\User10>aws sns subscribe --topic-arn arn:aws:sns:us-east-1:871533708305:DmytroLab5 --protocol email --notification-endpoint dima.buno1999@gmail.com
+{
+    "SubscriptionArn": "pending confirmation"
+}
+
+
+C:\Users\User10>aws cloudwatch put-metric-alarm --alarm-name Notification --alarm-description "DmytroLab5HealthStatus" --metric-name HealthyHostCount --namespace AWS/ApplicationELB --statistic Minimum --dimensions Name=LoadBalancer,Value=loadbalancer/app/DmytroLB3/7e4a7fbf98c58ce9 Name=TargetGroup,Value=targetgroup/Dmytro-Target-Group/13ade57cd2e6ce5a --unit Count --period 300 --threshold 2 --evaluation-periods 2 --comparison-operator LessThanThreshold --alarm-actions arn:aws:sns:us-east-1:871533708305:DmytroLab5
